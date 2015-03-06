@@ -8,13 +8,14 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="hucksterApp">
+  <body ng-app="ngFireSeedApp">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -23,20 +24,23 @@
     <div class="container">
       <div class="header">
         <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#">Home</a></li>
-          <!-- //angularfire -->
-          <li><a ng-href="#/chat">chat</a></li>
-          <li><a ng-hide-auth="" href="#/login">log in</a></li>
-          <li><a ng-show-auth="" href="#/account">account</a></li>
-          </ul>
-        <h3 class="text-muted">huckster</h3>
+          <li><a ng-show-auth="" ui-sref="home">Home</a></li>
+          <li><a ng-show-auth="" ui-sref="chat">Chat</a></li>
+          <li><a ng-show-auth="" ui-sref="account">Account</a></li>
+          <li><a ng-show-auth="" ui-sref="logout">Logout</a></li>
+
+          <li><a ng-hide-auth="" ui-sref="register">Register</a></li>
+          <li><a ng-hide-auth="" ui-sref="login">Log in</a></li>
+        </ul>
+        <h3><a ui-sref="main">huckster</a></h3>
       </div>
 
-      <div ng-view=""></div>
+      <div ui-view=""></div>
 
-      <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team, and from Firebase</p>
-      </div>
+      <p ng-repeat="toast in toasts" class="alert alert-{{ toast.type }}" ng-show="toasts.length">
+        {{ toast.text }}
+      </p>
+
     </div>
 
 
@@ -62,43 +66,33 @@
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/affix.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/alert.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/button.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/carousel.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/collapse.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/dropdown.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tab.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/transition.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/scrollspy.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/modal.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/firebase/firebase.js"></script>
     <script src="bower_components/angularfire/dist/angularfire.js"></script>
+    <script src="bower_components/ng-file-upload/angular-file-upload.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/routes.js"></script>
         <script src="scripts/angularfire/config.js"></script>
         <script src="scripts/angularfire/firebase.utils.js"></script>
-        <script src="scripts/controllers/chat.js"></script>
-        <script src="scripts/filters/reverse.js"></script>
         <script src="scripts/angularfire/simpleLogin.js"></script>
+        <script src="scripts/filters/reverse.js"></script>
+        <script src="scripts/services/utils.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/home.js"></script>
         <script src="scripts/controllers/login.js"></script>
+        <script src="scripts/controllers/register.js"></script>
         <script src="scripts/controllers/account.js"></script>
+        <script src="scripts/controllers/chat.js"></script>
         <script src="scripts/directives/ngShowAuth.js"></script>
         <script src="scripts/directives/ngHideAuth.js"></script>
-        <script src="scripts/routes.js"></script>
+        <script src="scripts/services/chat.js"></script>
+        <script src="scripts/services/profile.js"></script>
         <!-- endbuild -->
-
 </body>
 </html>

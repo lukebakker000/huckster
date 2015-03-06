@@ -2,22 +2,17 @@
 
 /**
  * @ngdoc overview
- * @name hucksterApp
+ * @name ngFireSeedApp
  * @description
- * # hucksterApp
+ * # ngFireSeedApp
  *
  * Main module of the application.
  */
-angular.module('hucksterApp', [
-    'ngAnimate',
-    'ngAria',
-    'ngCookies',
-    'ngMessages',
+angular.module('ngFireSeedApp', [
     'ngResource',
-    'ngRoute',
-    'ngSanitize',
-    'ngTouch',
+    'ui.router',
     'firebase',
     'firebase.utils',
-    'simpleLogin'
+    'simpleLogin',
+    'angularFileUpload'
   ]);

@@ -2,16 +2,12 @@
 
 /**
  * @ngdoc function
- * @name hucksterApp.controller:MainCtrl
+ * @name ngFireSeedApp.controller:MainCtrl
  * @description
  * # MainCtrl
- * Controller of the hucksterApp
+ * Controller of the ngFireSeedApp
  */
-angular.module('hucksterApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+angular.module('ngFireSeedApp')
+  .controller('MainCtrl', function ($scope, user) {
+    $scope.greeting = user ? 'Hello ' + user.uid : 'Hello stranger!';
   });
